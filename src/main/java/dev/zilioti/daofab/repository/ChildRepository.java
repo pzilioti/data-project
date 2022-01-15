@@ -9,9 +9,11 @@ import java.util.Map;
 
 public interface ChildRepository extends JpaRepository<Child, Integer> {
 
+    //query to get total paid amount by parent id
     @Query(value = "select sum(c.paid_amount) from Child c where c.parent_id = ?1", nativeQuery = true)
     public Integer getSumPaidAmountByParentId(Integer id);
 
+    //query to join information of child and parent tables. Sorted by child id
     @Query(value= "select c.id, p.sender, p.receiver, p.total_amount, c.paid_amount from child c, parent p where c.parent_id = p.id order by c.id", nativeQuery = true)
     public List<Map<String, Object>> getChildrenByParent();
 }
