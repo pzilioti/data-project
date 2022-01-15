@@ -26,6 +26,7 @@ public class DaofabApplication {
 		SpringApplication.run(DaofabApplication.class, args);
 	}
 
+	//load the json data into the DB
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
